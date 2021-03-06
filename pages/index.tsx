@@ -1,5 +1,6 @@
 import { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
+import Footer from '../components/footer'
 
 import styles from '../styles/pages/index.module.scss'
 
@@ -24,6 +25,7 @@ const Index: NextPage<Props> = ({ launch }) => {
         <p>
           {launch.rocket} will take off from {launch.site} on {date.toDateString()}
         </p>
+        <Footer />
       </main>
     </>
   )
