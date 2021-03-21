@@ -10,7 +10,11 @@ const productHandler: NextApiHandler = async (req: NextApiRequest, res: NextApiR
 
   res.setHeader('Cache-Control', 's-maxage=5, stale-while-revalidate')
 
-  res.status(200).json(productResponseJson)
+  if (productResponse.ok) {
+    res.status(200).json(productResponseJson)
+  } else {
+    res.status(404)
+  }
 }
 
 export default productHandler
