@@ -1,27 +1,17 @@
 import { NextPage } from 'next'
-import React from 'react'
 
-interface Props {
-  deviceType?: string
-}
+import FacebookIcon from '@material-ui/icons/Facebook'
+import InstagramIcon from '@material-ui/icons/Instagram'
 
-const Footer: NextPage<Props> = ({ deviceType }) => {
-  let componentToRender
-  if (deviceType === 'mobile') {
-    componentToRender = (
-      <div className="MobileComponent">
-        <h1>Mobile</h1>
-      </div>
-    )
-  } else {
-    componentToRender = (
-      <div className="DesktopComponent">
-        <h1>Desktop</h1>
-      </div>
-    )
-  }
+import styles from '../styles/components/footer.module.scss'
+import { useDeviceInformation } from '../hooks/useDeviceInformation'
 
-  return componentToRender
+const Footer: NextPage = () => {
+  const { isMobile } = useDeviceInformation().deviceInformation
+
+  const renderedFooter = isMobile ? <div></div> : <div></div>
+
+  return renderedFooter
 }
 
 export default Footer

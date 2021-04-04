@@ -1,0 +1,56 @@
+.productList {
+  height: 480px;
+  margin: 0px 50px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  margin: 15px 0px;
+
+  > a {
+    margin-right: 10px;
+    padding: 6px;
+
+    border: 1px #e5e5e5 solid;
+
+    line-height: 1.5;
+    font-size: 1.6rem;
+    font-weight: 300;
+
+    transition: all 200ms ease;
+  }
+
+  > a:hover {
+    background-color: #e5e5e5;
+  }
+}
+
+.productContainer {
+  display: flex;
+  flex-direction: row;
+  height: 300px;
+
+  > div {
+    flex: 1 1;
+    min-width: 200px;
+  }
+}
+
+@media only screen and (max-width: 920px) {
+  .productList {
+    margin: 5px;
+  }
+
+  .header {
+    > a {
+      margin-right: 0px;
+    }
+  }
+
+  .productContainer {
+    overflow-x: scroll;
+  }
+}

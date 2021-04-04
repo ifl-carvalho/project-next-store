@@ -1,7 +1,7 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 
 const productsHandler: NextApiHandler = async (_req: NextApiRequest, res: NextApiResponse) => {
-  const storeApi = process.env.STORE_BACK_END_API || `https://fakestoreapi.herokuapp.com`
+  const storeApi = process.env.STORE_BACK_END_API || `http://localhost:3333`
 
   const productsResponse = await fetch(`${storeApi}/products/`)
   const productsResponseJson = await productsResponse.json()

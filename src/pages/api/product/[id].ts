@@ -3,9 +3,9 @@ import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 const productHandler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query
 
-  const storeApi = process.env.STORE_BACK_END_API || `https://fakestoreapi.herokuapp.com/products/`
+  const storeApi = process.env.STORE_BACK_END_API || `http://localhost:3333`
 
-  const productResponse = await fetch(`${storeApi}/${id}`)
+  const productResponse = await fetch(`${storeApi}/product/${id}`)
   const productResponseJson = await productResponse.json()
 
   res.setHeader('Cache-Control', 's-maxage=5, stale-while-revalidate')

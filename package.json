@@ -9,9 +9,12 @@
     "start": "next start"
   },
   "dependencies": {
+    "@material-ui/icons": "^4.11.2",
+    "@types/react-transition-group": "^4.4.1",
     "next": "10.0.7",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-transition-group": "^4.4.1",
     "sass": "^1.32.8"
   },
   "devDependencies": {

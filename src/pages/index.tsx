@@ -1,48 +1,47 @@
 import { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
-import Footer from '../components/footer'
+
+import { ProductData, ProductsProvider } from '../contexts/ProductsContext'
+
+import Footer from '../components/Footer'
+import ProductList from '../components/ProductList'
 
 import styles from '../styles/pages/index.module.scss'
 
 interface Props {
-  launch: {
-    mission: string
-    site: string
-    timestamp: number
-    rocket: string
-  }
+  products: ProductData[]
+  deviceType: string
 }
 
-const Index: NextPage<Props> = ({ launch }) => {
-  const date = new Date(launch.timestamp)
+const Index: NextPage<Props> = ({ products }) => {
   return (
     <>
       <Head>
         <title>Create Next App</title>
       </Head>
-      <main>
-        <h1 className={styles.test}>Next SpaceX Launch: {launch.mission}</h1>
-        <p>
-          {launch.rocket} will take off from {launch.site} on {date.toDateString()}
-        </p>
-        <Footer />
-      </main>
+      <ProductsProvider productsData={products}>
+        <main>
+          <ProductList />
+          <Footer />
+        </main>
+      </ProductsProvider>
     </>
   )
 }
 export default Index
 
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  const response = await fetch('https://api.spacexdata.com/v3/launches/next')
-  const nextLaunch = await response.json()
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const userAgent = req.headers['user-agent'] as string
+
+  const storeApi = process.env.STORE_NEXT_API || `http://localhost:3000`
+
+  const productsResponse = await fetch(`${storeApi}/api/products/`)
+  const productsResponseJson = await productsResponse.json()
+
   return {
     props: {
-      launch: {
-        mission: nextLaunch.mission_name,
-        site: nextLaunch.launch_site.site_name_long,
-        timestamp: nextLaunch.launch_date_unix * 1000,
-        rocket: nextLaunch.rocket.rocket_name,
-      },
+      products: productsResponseJson,
+      deviceType: userAgent,
     },
   }
 }
