@@ -2,6 +2,7 @@ import { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 
 import { ProductData, ProductsProvider } from '../contexts/ProductsContext'
+import { DeviceProvider } from '../contexts/DeviceContext'
 
 import Footer from '../components/Footer'
 import ProductList from '../components/ProductList'
@@ -13,18 +14,20 @@ interface Props {
   deviceType: string
 }
 
-const Index: NextPage<Props> = ({ products }) => {
+const Index: NextPage<Props> = ({ products, deviceType }) => {
   return (
     <>
       <Head>
         <title>Create Next App</title>
       </Head>
-      <ProductsProvider productsData={products}>
-        <main>
-          <ProductList />
-          <Footer />
-        </main>
-      </ProductsProvider>
+      <DeviceProvider deviceType={deviceType}>
+        <ProductsProvider productsData={products}>
+          <main>
+            <ProductList />
+            <Footer />
+          </main>
+        </ProductsProvider>
+      </DeviceProvider>
     </>
   )
 }

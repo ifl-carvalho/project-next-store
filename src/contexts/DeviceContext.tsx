@@ -18,15 +18,13 @@ export interface DeviceContextData {
 
 export const DeviceContext = createContext({} as DeviceContextData)
 
-export const ProductsProvider: NextPage<DeviceProviderProps> = function ({ children, deviceType }) {
+export const DeviceProvider: NextPage<DeviceProviderProps> = function ({ children, deviceType }) {
   const isMobile = Boolean(
     deviceType.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i)
   )
 
   const setDeviceInformation = (deviceInformation: DeviceInformation): void => {
-    console.log(
-      setDeviceInformationState({ ...deviceInformationState, deviceInformation: deviceInformation })
-    )
+    setDeviceInformationState({ ...deviceInformationState, deviceInformation: deviceInformation })
   }
 
   const [deviceInformationState, setDeviceInformationState] = useState({
