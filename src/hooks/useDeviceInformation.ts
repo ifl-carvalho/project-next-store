@@ -1,8 +1,14 @@
 import { useContext } from 'react'
-import { DeviceContext, DeviceContextData } from '../contexts/DeviceContext'
+import { DeviceContext, DeviceInformation } from '../contexts/DeviceContext'
 
-export function useDeviceInformation(): DeviceContextData {
-  const context = useContext(DeviceContext)
+export function useDeviceInformation(): DeviceInformation {
+  const context = useContext(DeviceContext).deviceInformation
+
+  return context
+}
+
+export function useSetDeviceInformation(): (deviceInformation: DeviceInformation) => void {
+  const context = useContext(DeviceContext).setDeviceInformation
 
   return context
 }

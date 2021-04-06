@@ -10,7 +10,7 @@ export interface ProductData {
   title: string
   description: string
   images: Array<ImageData>
-  categories: Array<CategoryData>
+  tags: Array<TagData>
 }
 
 export interface ImageData {
@@ -18,9 +18,9 @@ export interface ImageData {
   url: string
 }
 
-export interface CategoryData {
+export interface TagData {
   id: string
-  category: string
+  tag: string
 }
 
 export interface ProductsProviderProps {
