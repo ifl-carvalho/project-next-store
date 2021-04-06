@@ -33,7 +33,7 @@ const Product: NextPage<ProductComponentProps> = (props) => {
   return (
     <div
       className={styles.product}
-      onMouseEnter={(e) => {
+      onMouseEnter={() => {
         setCurrentImageState(images[1].url)
         setAnimationState(true)
       }}
