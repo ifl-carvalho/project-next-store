@@ -7,7 +7,7 @@ export function useProducts(): ProductData[] {
   return context
 }
 
-export function useSetProducts(): (products: Array<ProductData>) => void {
+export function useSetProducts(): (products: ProductData[]) => void {
   const context = useContext(ProductsContext).setProductsList
 
   return context
