@@ -1,5 +1,4 @@
 .productList {
-  height: 480px;
   margin: 0px 50px;
 }
 
@@ -31,11 +30,27 @@
 .productContainer {
   display: flex;
   flex-direction: row;
-  height: 300px;
+
+  height: 80%;
+
+  overflow-y: visible;
+  overflow-x: auto;
 
   > div {
     flex: 1 1;
     min-width: 200px;
+  }
+
+  > p {
+    align-self: center;
+    justify-self: center;
+
+    color: #e5e5e5;
+    background-color: #990000;
+
+    padding: 12px;
+
+    font-size: 3rem;
   }
 }
 
@@ -48,9 +63,5 @@
     > a {
       margin-right: 0px;
     }
-  }
-
-  .productContainer {
-    overflow-x: scroll;
   }
 }
