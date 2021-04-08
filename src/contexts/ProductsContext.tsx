@@ -20,7 +20,7 @@ export interface ImageData {
 
 export interface TagData {
   id: string
-  tag: string
+  name: string
 }
 
 export interface ProductsProviderProps {
@@ -30,7 +30,7 @@ export interface ProductsProviderProps {
 
 export interface ProductsContextData {
   productList: ProductData[]
-  setProductsList: (products: Array<ProductData>) => void
+  setProductsList: (products: ProductData[]) => void
 }
 
 export const ProductsContext = createContext({} as ProductsContextData)

@@ -1,0 +1,73 @@
+.banner {
+  position: fixed;
+  bottom: 0;
+
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: left;
+
+  width: 100%;
+
+  padding: 12px;
+
+  > button > * {
+    font-size: 3.5rem;
+  }
+
+  > button {
+    margin-top: 10px;
+
+    color: #000000;
+    background-color: transparent;
+
+    border: none;
+  }
+
+  > button:hover {
+    cursor: pointer;
+  }
+
+  > button:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+.bannerText {
+  max-width: 1000px;
+
+  font-size: 1.6rem;
+
+  > span {
+    font-size: 1.3rem;
+  }
+
+  > a {
+    font-size: 1.3rem;
+
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+  }
+}
+
+@media only screen and (max-width: 920px) {
+  .bannerText {
+    max-width: 1000px;
+
+    font-size: 1.2rem;
+
+    p > span {
+      font-size: 1rem;
+    }
+
+    p > a {
+      font-size: 1rem;
+
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+    }
+  }
+}
