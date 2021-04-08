@@ -4,6 +4,7 @@ import Head from 'next/head'
 import { ProductData, ProductsProvider } from '../contexts/ProductsContext'
 import { CategoryData, CategoriesProvider } from '../contexts/CategoriesContext'
 import { DeviceProvider } from '../contexts/DeviceContext'
+import NavBar from '../components/NavBar'
 
 import Footer from '../components/Footer'
 import ProductList from '../components/ProductList'
@@ -27,7 +28,9 @@ const Index: NextPage<IndexProps> = ({ deviceType, categories, products }) => {
         <CategoriesProvider categoriesData={categories}>
           <ProductsProvider productsData={products}>
             <main>
+              <NavBar />
               <ProductList />
+              <div className={styles.emptybox}></div>
               <Footer />
               <CookiesModal />
             </main>
