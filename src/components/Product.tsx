@@ -3,20 +3,18 @@ import Image from 'next/image'
 import { CSSTransition } from 'react-transition-group'
 
 import { useState } from 'react'
-import { useProducts } from '../hooks/useProducts'
+import { ProductData } from '../contexts/ProductsContext'
 import { useParseToDisplayPrice } from '../hooks/useParseToDisplayPrice'
-
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 
 import styles from '../styles/components/product.module.scss'
 
 interface ProductComponentProps {
-  currentProduct: number
+  currentProduct: ProductData
 }
 
-const Product: NextPage<ProductComponentProps> = (props) => {
-  const { currentProduct } = props
-  const { name, price, discount, amount, images } = useProducts()[currentProduct]
+const Product: NextPage<ProductComponentProps> = ({ currentProduct }) => {
+  const { name, price, discount, amount, images } = currentProduct
+
   const [currentImageState, setCurrentImageState] = useState(images[0].url)
   const [animationState, setAnimationState] = useState(false)
 
@@ -79,7 +77,15 @@ const Product: NextPage<ProductComponentProps> = (props) => {
         component={null}
       >
         <a className={styles.cartButton} href="/">
-          Adicionar ao <ShoppingCartIcon />
+          Adicionar ao{' '}
+          <Image
+            src="/icons/cart-filled.svg"
+            alt="cart"
+            height={17}
+            width={17}
+            layout="fixed"
+            objectFit="cover"
+          />
         </a>
       </CSSTransition>
       <h1>{name}</h1>

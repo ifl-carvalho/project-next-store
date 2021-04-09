@@ -1,13 +1,11 @@
 import { NextPage } from 'next'
 
-import FacebookIcon from '@material-ui/icons/Facebook'
-import InstagramIcon from '@material-ui/icons/Instagram'
+import { useDeviceDetect } from '../hooks/useDeviceDetect'
 
 import styles from '../styles/components/footer.module.scss'
-import { useDeviceInformation } from '../hooks/useDeviceInformation'
 
 const Footer: NextPage = () => {
-  const { isMobile } = useDeviceInformation()
+  const { isMobile } = useDeviceDetect()
 
   const renderedFooter = isMobile ? <div></div> : <div></div>
 

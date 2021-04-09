@@ -16,9 +16,10 @@ body {
   background-color: --color-body;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 input,
@@ -28,8 +29,20 @@ select {
   font: inherit;
 }
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+button {
+  border: none;
+  background-color: transparent;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }

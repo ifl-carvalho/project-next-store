@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 
-import Footer from '../components/footer'
+import Footer from '../components/Footer'
 import NavBar from '../components/NavBar'
 
 import styles from '../styles/pages/policies.module.scss'

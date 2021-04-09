@@ -1,7 +1,6 @@
 import { NextPage } from 'next'
+import Image from 'next/image'
 import { useState } from 'react'
-
-import CloseIcon from '@material-ui/icons/Close'
 
 import styles from '../styles/components/cookiesModal.module.scss'
 
@@ -11,8 +10,8 @@ interface CookiesModalViewProps {
 
 export const CookiesModalView: NextPage<CookiesModalViewProps> = ({ onClick }) => {
   return (
-    <div className={styles.banner}>
-      <p className={styles.bannerText}>
+    <div className={styles.modal}>
+      <p className={styles.modalText}>
         Esse site usa Cookies!
         <br />
         <span>
@@ -23,7 +22,14 @@ export const CookiesModalView: NextPage<CookiesModalViewProps> = ({ onClick }) =
         <a href="/policies">Política de Privacidade</a>.
       </p>
       <button onClick={onClick}>
-        <CloseIcon fontSize="large" />
+        <Image
+          src="/icons/close.svg"
+          alt="close"
+          height={36}
+          width={36}
+          layout="fixed"
+          objectFit="cover"
+        />
       </button>
     </div>
   )

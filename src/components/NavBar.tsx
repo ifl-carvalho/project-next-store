@@ -1,4 +1,5 @@
 import { NextPage } from 'next'
+import Image from 'next/image'
 import React, { useState } from 'react'
 
 import styles from '../styles/components/navBar.module.scss'
@@ -19,75 +20,69 @@ const NavBar: NextPage = () => {
 
   return (
     <>
-      <div className={styles.ToolBar}>
-        <a>About us</a>
+      <div className={styles.toolBar}>
+        <a>Av. Paulista, 5909</a>
         <ul>
           <a href="https://www.instagram.com" target="_blank" rel="noreferrer">
-            <img src="./icons/instagram.svg" alt="" />
+            <Image
+              src="/icons/instagram.svg"
+              alt="instagram"
+              height={18}
+              width={18}
+              layout="fixed"
+              objectFit="cover"
+            />
           </a>
           <a href="http://www.fb.com" target="_blank" rel="noreferrer">
-            <img src="./icons/facebook.svg" alt="" />
+            <Image
+              src="/icons/facebook.svg"
+              alt="facebook"
+              height={18}
+              width={18}
+              layout="fixed"
+              objectFit="cover"
+            />
           </a>
         </ul>
       </div>
 
-      <div className={styles.BehindNavBar}>
-        <nav className={followNavBar ? styles.NavBar2 : styles.NavBar}>
-          <div className={styles.NavBar}>
-            <div className={styles.NavBarTopSection}>
-              <a className={styles.SearchIcon}>
-                <img src="./icons/search.svg" alt="SearchIcon" />
-              </a>
-              <img className={styles.logo} src="./googlelogo.png" />
-              <ul>
-                <a>
-                  <img src="./icons/login.svg" alt="Login" />
-                </a>
-                <a>
-                  <img src="./icons/cart.svg" alt="" />
-                </a>
-              </ul>
-            </div>
-            <ul>
-              <a
-                href="/"
-                onMouseOver={() => {
-                  setshopSectionOn(styles.shopButton)
-                }}
-                onMouseOut={() => {
-                  setshopSectionOn(styles.ShopSection)
-                }}
-              >
-                Shop
-              </a>
-              <a href="">New Arrivals</a>
-              <a href="">Best Sellers</a>
-              <a href="">Sale</a>
-            </ul>
-          </div>
-        </nav>
-      </div>
-
-      <div
-        className={shopSectionOff}
-        onMouseOver={() => {
-          setshopSectionOn(styles.shopButton)
-        }}
-        onMouseOut={() => {
-          setshopSectionOn(styles.ShopSection)
-        }}
-      >
-        <div>
-          <h4>Aparencia</h4>
+      <div className={styles.navBar}>
+        <a href="/">
+          <Image
+            src="/logo.svg"
+            alt="logo"
+            height={40}
+            width={160}
+            layout="fixed"
+            objectFit="cover"
+          />
+        </a>
+        <div className={styles.menuDesktop}>
+          <a>Produtos</a>
+          <a>Lançamento</a>
+          <a>Promoções</a>
         </div>
         <div>
-          <h4>Acessorios</h4>
-        </div>
-        <div>
-          <h4>Cuidado com a pele</h4>
-        </div>
-        <div>
-          <h4>Outros</h4>
+          <button>
+            <Image
+              src="/icons/search.svg"
+              alt="search"
+              height={32}
+              width={32}
+              layout="fixed"
+              objectFit="cover"
+            />
+          </button>
+          <a href="/cart">
+            <Image
+              src="/icons/cart-open.svg"
+              alt="cart"
+              height={32}
+              width={32}
+              layout="fixed"
+              objectFit="cover"
+            />
+          </a>
         </div>
       </div>
     </>

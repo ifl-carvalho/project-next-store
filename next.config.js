@@ -2,7 +2,7 @@ module.exports = {
   images: {
     domains: ['localhost'],
   },
-  async headers() {
+async headers() {
     return [
       {
         source: '/:all*(svg|jpg|png)',
@@ -10,7 +10,7 @@ module.exports = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=9999999999, must-revalidate',
+            value: 'public, max-age=3600, must-revalidate',
           }
         ],
       },

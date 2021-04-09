@@ -1,5 +1,5 @@
 .productList {
-  margin: 0px 50px;
+  margin: 50px;
 }
 
 .header {
@@ -32,6 +32,7 @@
   flex-direction: row;
 
   height: 80%;
+  min-height: 300px;
 
   overflow-y: visible;
   overflow-x: auto;
@@ -42,8 +43,7 @@
   }
 
   > p {
-    align-self: center;
-    justify-self: center;
+    margin: auto;
 
     color: #e5e5e5;
     background-color: #990000;
@@ -56,7 +56,51 @@
 
 @media only screen and (max-width: 920px) {
   .productList {
-    margin: 5px;
+    margin: 15px 0px;
+  }
+
+  .header {
+    margin: 0 5px;
+
+    > h1 {
+      font-size: 2.8rem;
+    }
+  }
+
+  .productContainer {
+    > p {
+      font-size: 2rem;
+    }
+  }
+
+  .header {
+    > a {
+      margin-right: 0px;
+    }
+  }
+}
+
+@media only screen and (max-width: 374px) {
+  .productList {
+    margin: 15px 0px;
+  }
+
+  .header {
+    margin: 0 5px;
+
+    > h1 {
+      font-size: 2.4rem;
+    }
+
+    > a {
+      font-size: 1.4rem;
+    }
+  }
+
+  .productContainer {
+    > p {
+      font-size: 2rem;
+    }
   }
 
   .header {

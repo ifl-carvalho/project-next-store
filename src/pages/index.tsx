@@ -1,13 +1,12 @@
-import { GetServerSideProps, NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 
 import { ProductData, ProductsProvider } from '../contexts/ProductsContext'
 import { CategoryData, CategoriesProvider } from '../contexts/CategoriesContext'
-import { DeviceProvider } from '../contexts/DeviceContext'
-import NavBar from '../components/NavBar'
 
+import NavBar from '../components/NavBar'
+import ProductsDisplay from '../components/ProductsDisplay'
 import Footer from '../components/Footer'
-import ProductList from '../components/ProductList'
 import CookiesModal from '../components/CookiesModal'
 
 import styles from '../styles/pages/index.module.scss'
@@ -15,50 +14,52 @@ import styles from '../styles/pages/index.module.scss'
 interface IndexProps {
   categories: CategoryData[]
   products: ProductData[]
-  deviceType: string
 }
 
-const Index: NextPage<IndexProps> = ({ deviceType, categories, products }) => {
+const Index: NextPage<IndexProps> = ({ categories, products }) => {
   return (
     <>
       <Head>
         <title>Create Next App</title>
       </Head>
-      <DeviceProvider deviceType={deviceType}>
-        <CategoriesProvider categoriesData={categories}>
-          <ProductsProvider productsData={products}>
-            <main>
-              <NavBar />
-              <ProductList />
-              <div className={styles.emptybox}></div>
-              <Footer />
-              <CookiesModal />
-            </main>
-          </ProductsProvider>
-        </CategoriesProvider>
-      </DeviceProvider>
+      <CategoriesProvider categoriesData={categories}>
+        <ProductsProvider productsData={products}>
+          <main>
+            <NavBar />
+            <ProductsDisplay
+              numberOfProducts={4}
+              displayTag={''}
+              displayDiscountOver={0}
+              showHeader={true}
+              headerText={'Mais Vendidos'}
+              showSeeMoreButton={true}
+            />
+            <div className={styles.emptyBox} />
+            <Footer />
+            <CookiesModal />
+          </main>
+        </ProductsProvider>
+      </CategoriesProvider>
     </>
   )
 }
 export default Index
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const userAgent = req.headers['user-agent'] as string
-
-  const categoryApi = process.env.NEXT_CATEGORIES_API || `http://localhost:3000/api/categories/`
-  const storeApi = process.env.NEXT_PRODUCTS_API || `http://localhost:3000/api/products/`
+export const getStaticProps: GetStaticProps = async () => {
+  const categoryApi = process.env.STORE_CATEGORIES_API || `http://localhost:3333/categories/`
+  const storeApi = process.env.STORE_PRODUCTS_API || `http://localhost:3333/products/`
 
   const categoriesResponse = await fetch(`${categoryApi}`)
-  const categoriesResponseJson = await categoriesResponse.json()
+  const categoriesData = await categoriesResponse.json()
 
   const productsResponse = await fetch(`${storeApi}`)
-  const productsResponseJson = await productsResponse.json()
+  const productsData = await productsResponse.json()
 
   return {
     props: {
-      categories: categoriesResponseJson,
-      products: productsResponseJson,
-      deviceType: userAgent,
+      categories: categoriesData,
+      products: productsData,
     },
+    revalidate: 10,
   }
 }
