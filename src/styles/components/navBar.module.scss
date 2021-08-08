@@ -1,0 +1,297 @@
+.fullBar {
+  position: absolute;
+  z-index: 11000;
+
+  width: 100%;
+
+  color: #ffffff;
+}
+
+.infoBar {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  height: 32px;
+
+  padding: 0px 12px;
+
+  > a {
+    font-size: 1.2rem;
+  }
+
+  > ul {
+    display: flex;
+    align-items: center;
+
+    > li {
+      padding: 4px;
+      font-size: 0;
+    }
+  }
+
+  &::after {
+    content: "";
+
+    position: absolute;
+    left: 50%;
+
+    height: 30px;
+    width: 80%;
+
+    border-bottom: 1px hsla(0, 0%, 100%, 0.2) solid;
+
+    transform: translate(-50%, 0%);
+  }
+}
+
+.navBar {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  height: 90px;
+  width: 100%;
+
+  padding: 0px 30px;
+
+  > * {
+    flex: 1 1;
+  }
+
+  > .menuWide {
+    display: flex;
+    justify-content: space-between;
+
+    > a {
+      font-size: 2rem;
+      margin: 0px 5px;
+    }
+  }
+
+  > .menuButtonNarrow {
+    order: -1;
+  }
+
+  > :last-child {
+    display: flex;
+    justify-content: flex-end;
+
+    > * {
+      margin: 0 15px;
+    }
+  }
+}
+
+.menuNarrowBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 13000;
+
+  visibility: hidden;
+  height: 100%;
+  width: 100%;
+
+  overflow-y: hidden;
+
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(5.5px);
+  -webkit-backdrop-filter: blur(5.5px);
+}
+
+.menuNarrow {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+  width: 90%;
+
+  overflow-y: hidden;
+
+  color: #000000;
+  background-color: #ffffff;
+
+  > div {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    padding: 25px;
+  }
+
+  > div::after {
+    content: "";
+
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+
+    height: 1px;
+    width: 95%;
+
+    background-color: #e8e8e1;
+
+    transform: translate(-50%, 0);
+  }
+
+  &ul,
+  li {
+    list-style-type: none;
+
+    display: flex;
+    justify-content: flex-start;
+
+    padding: 15px;
+
+    font-size: 2rem;
+    font-weight: 400;
+
+    border-bottom: 1px #e8e8e1 solid;
+  }
+
+  > ul > li > button {
+    font-size: 0;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .infoBar {
+    padding: 0px;
+
+    > a {
+      padding: 4px;
+    }
+  }
+
+  .navBar {
+    height: 60px;
+
+    padding: 0px 10px;
+
+    > :last-child {
+      > * {
+        margin: 0 5px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .navBar {
+    .logoButton {
+      > div {
+        width: 200px !important;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .navBar {
+    .logoButton {
+      > div {
+        width: 180px !important;
+      }
+    }
+  }
+}
+
+.menuNarrowEntering {
+  visibility: visible;
+
+  > div {
+    position: fixed;
+    top: 0;
+    right: -100%;
+  }
+}
+
+.menuNarrowEntered {
+  visibility: visible;
+
+  > div {
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    transition: all 200ms ease-in;
+  }
+}
+
+.menuNarrowExiting {
+  visibility: visible;
+
+  > div {
+    position: fixed;
+    top: 0;
+    right: 0;
+  }
+}
+
+.menuNarrowExited {
+  visibility: hidden;
+
+  > div {
+    position: fixed;
+    top: 0;
+    right: -100%;
+
+    transition: all 200ms ease-in;
+  }
+}
+
+.menuCategoryEntering {
+  margin-top: 15px;
+  opacity: 0.3;
+}
+
+.menuCategoryEntered {
+  margin-top: 0;
+  opacity: 1;
+
+  transition: all 200ms ease-in;
+}
+
+.menuCategoryExiting {
+  opacity: 1;
+}
+
+.menuCategoryExited {
+  opacity: 0.3;
+
+  transition: all 200ms ease-in;
+}
+
+.fullBarEntering {
+  position: fixed;
+
+  top: -90px;
+
+  color: #000000;
+  background: #ffffff;
+}
+
+.fullBarEntered {
+  position: fixed;
+
+  top: 0px;
+
+  color: #000000;
+  background: #ffffff;
+
+  transition: top 200ms ease;
+}
+
+.fullBarExiting {
+  position: absolute;
+}
+
+.fullBarExited {
+  position: absolute;
+}
