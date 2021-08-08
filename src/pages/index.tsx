@@ -1,15 +1,18 @@
 import { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
-
-import { ProductData, ProductsProvider } from '../contexts/ProductsContext'
-import { CategoryData, CategoriesProvider } from '../contexts/CategoriesContext'
-
+import Cart from '../components/Cart'
+import CookiesModal from '../components/CookiesModal'
+import Footer from '../components/Footer'
+import MainDisplay from '../components/MainDisplay'
 import NavBar from '../components/NavBar'
 import ProductsDisplay from '../components/ProductsDisplay'
-import Footer from '../components/Footer'
-import CookiesModal from '../components/CookiesModal'
+import { CategoryData } from '../contexts/CategoriesContext'
+import { ProductData } from '../contexts/ProductsContext'
+import { useCategories } from '../hooks/useCategories'
+import { useProducts } from '../hooks/useProducts'
 
-import styles from '../styles/pages/index.module.scss'
+
+
 
 interface IndexProps {
   categories: CategoryData[]
@@ -17,32 +20,33 @@ interface IndexProps {
 }
 
 const Index: NextPage<IndexProps> = ({ categories, products }) => {
+  useCategories().setCategoryList(categories)
+  useProducts().setProductsList(products)
+
   return (
     <>
       <Head>
         <title>Create Next App</title>
       </Head>
-      <CategoriesProvider categoriesData={categories}>
-        <ProductsProvider productsData={products}>
-          <main>
-            <NavBar />
-            <ProductsDisplay
-              numberOfProducts={4}
-              displayTag={''}
-              displayDiscountOver={0}
-              showHeader={true}
-              headerText={'Mais Vendidos'}
-              showSeeMoreButton={true}
-            />
-            <div className={styles.emptyBox} />
-            <Footer />
-            <CookiesModal />
-          </main>
-        </ProductsProvider>
-      </CategoriesProvider>
+      <main>
+        <NavBar />
+        <MainDisplay />
+        <ProductsDisplay
+          numberOfProducts={4}
+          displayTag={''}
+          displayDiscountOver={0}
+          showHeader={true}
+          headerText={'Mais Vendidos'}
+          showSeeMoreButton={true}
+        />
+        <Cart />
+        <Footer />
+        <CookiesModal />
+      </main>
     </>
   )
 }
+
 export default Index
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -58,7 +62,7 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       categories: categoriesData,
-      products: productsData,
+      products: productsData.products,
     },
     revalidate: 10,
   }

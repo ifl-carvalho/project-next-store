@@ -1,0 +1,70 @@
+.loading {
+  position: absolute;
+  z-index: 12000;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: #ffffff;
+
+  > div {
+    position: relative;
+    top: 50%;
+    left: 50%;
+
+    width: 160px;
+    height: 160px;
+
+    border-bottom: transparent 7px solid;
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%) rotate(0deg);
+
+    animation: rotate 2000ms infinite linear;
+
+    > :nth-child(1) {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      transform: translate(-50%, -50%);
+
+      animation: cancelRotate 2000ms infinite linear;
+    }
+
+    > :nth-child(2) {
+      position: absolute !important;
+      top: 0;
+      left: 0;
+
+      transform: scale(-1, -1) rotate(135deg);
+    }
+  }
+
+  > ::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 160px;
+    height: 160px;
+
+    border-bottom: #000000 4px solid;
+    border-right: #000000 4px dotted;
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%) rotate(35deg);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+@keyframes cancelRotate {
+  100% {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}

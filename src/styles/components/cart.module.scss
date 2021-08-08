@@ -1,0 +1,214 @@
+.cart {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  align-items: center;
+
+  height: 90%;
+  min-width: 582px;
+
+  border-radius: 15px;
+
+  background-color: #ffffff;
+  box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.45);
+  -webkit-box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.45);
+
+  > div {
+    width: 100%;
+  }
+}
+
+.header {
+  flex: 1 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.listContainer {
+  flex: 7 2;
+
+  display: flex;
+  flex-direction: column;
+
+  height: 70%;
+
+  border-top: 1px #cbcbcb solid;
+  border-bottom: 1px #cbcbcb solid;
+
+  overflow-y: auto;
+}
+
+.item {
+  flex: 1 1;
+
+  display: flex;
+  flex-direction: row;
+
+  padding: 15px;
+
+  > * {
+    flex: 1 1;
+  }
+
+  .itemImage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > div {
+      border: 2px #cbcbcb solid;
+    }
+  }
+
+  .itemInfo {
+    flex: 2 1;
+
+    padding: 15px;
+
+    > h3 > {
+      font-size: 1.6rem;
+    }
+
+    > .itemPrice {
+      font-size: 1.2rem;
+      font-weight: 500;
+
+      color: #a5a5a5;
+    }
+
+    > .itemSellingPrice {
+      font-weight: 600;
+    }
+  }
+
+  .itemButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > button {
+      padding: 5px;
+
+      font-size: 0;
+
+      border-radius: 10px;
+
+      color: #ffffff;
+      background-color: #ed5e68;
+    }
+  }
+}
+
+.priceContainer {
+  flex: 1 1;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  border-bottom: 1px #cbcbcb solid;
+
+  > span {
+    flex: 1 1 50%;
+
+    padding: 15px;
+
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  > span:nth-child(2) {
+    text-align: end;
+  }
+
+  > p {
+    margin: 0 0 15px 0;
+    padding: 10px 15px;
+
+    border-radius: 50px;
+
+    color: #217d10;
+    background-color: #c7ffa6;
+  }
+}
+
+.buttonContainer {
+  flex: 1 1;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px;
+
+  > button {
+    height: 100%;
+    width: 100%;
+
+    font-size: 2.8rem;
+    text-justify: center;
+
+    border-radius: 15px;
+
+    color: #ffffff;
+    background-color: #3b74f2;
+  }
+}
+
+@media screen and (max-width: 582px) {
+  .cart {
+    min-width: 100%;
+    border-radius: 15px 15px 0 0;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .itemInfo {
+    > h3 {
+      font-size: 1.3rem;
+    }
+
+    > .itemPrice {
+      font-size: 1rem;
+      font-weight: 500;
+
+      color: #a5a5a5;
+    }
+
+    > .itemSellingPrice {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .header {
+    > h2 {
+      font-size: 2.2rem;
+    }
+  }
+
+  .priceContainer {
+    > span {
+      font-size: 1.8rem;
+    }
+
+    > p {
+      font-size: 1.4rem;
+    }
+  }
+
+  .buttonContainer {
+    > button {
+      font-size: 2.5rem;
+    }
+  }
+}

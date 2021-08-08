@@ -4,9 +4,9 @@ import { useState, createContext, ReactNode } from 'react'
 export interface ProductData {
   id: number
   name: string
-  price: number
-  discount: number
-  amount: number
+  price: string
+  discount: string
+  amount: string
   title: string
   description: string
   images: Array<ImageData>
@@ -23,14 +23,14 @@ export interface TagData {
   name: string
 }
 
-export interface ProductsProviderProps {
-  children: ReactNode
-  productsData: ProductData[]
-}
-
 export interface ProductsContextData {
   productList: ProductData[]
   setProductsList: (products: ProductData[]) => void
+}
+
+interface ProductsProviderProps {
+  children: ReactNode
+  productsData: ProductData[]
 }
 
 export const ProductsContext = createContext({} as ProductsContextData)

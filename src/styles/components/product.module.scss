@@ -101,22 +101,23 @@
   }
 }
 
+
 .productEntering {
-  opacity: 1;
-  transition: opacity 100ms;
+  opacity: 0.3;
 }
 
-.productEnteringActive {
-  opacity: 0.3;
+.productEntered {
+  opacity: 1;
+  transition: opacity 100ms;
 }
 
 .productExiting {
-  opacity: 1;
-  transition: opacity 100ms;
+  opacity: 0.3;
 }
 
-.productExitingActive {
-  opacity: 0.3;
+.productExited {
+  opacity: 1;
+  transition: opacity 100ms;
 }
 
 .cartButtonEntering {

@@ -1,118 +1,61 @@
+import { NextPage } from 'next'
 import { createContext, ReactNode, useEffect, useState } from 'react'
+
 import Cookies from 'js-cookie'
 
-interface Challenge {
-  type: 'body' | 'eye'
-  description: string
-  amount: number
+export interface CartData {
+  id: number
 }
 
-interface ChallengesContextData {
-  level: number
-  challengesCompleted: number
-  currentExperience: number
-  experienceToNextLevel: number
-  activeChallenge: Challenge
-  completeChallenge: () => void
-  startNewChallenge: () => void
-  resetChallenge: () => void
-  closeLevelUpModal: () => void
+export interface CartContextData {
+  cartData: CartData[]
+  removeAllFromCart: () => void
+  removeFromCart: (target: CartData) => void
+  addToCart: (item: CartData) => void
 }
 
-interface ChallengesProviderProps {
+interface CartProviderProps {
   children: ReactNode
-  level: number
-  currentExperience: number
-  challengesCompleted: number
+  cartData: CartData[]
 }
 
-export const ChallengesContext = createContext({} as ChallengesContextData)
+export const CartContext = createContext({} as CartContextData)
 
-export function ChallengesProvider({ children, ...rest }: ChallengesProviderProps) {
-  const [level, setLevel] = useState(rest.level ?? 1)
-  const [currentExperience, setCurrentExperience] = useState(rest.currentExperience ?? 0)
-  const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted ?? 0)
-
-  const [activeChallenge, setActiveChallenge] = useState<Challenge>(null)
-  const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false)
-
-  const experienceToNextLevel = Math.pow((level + 1) * 4, 2)
+export const CartProvider: NextPage<CartProviderProps> = function ({ children, cartData }) {
+  const [cartDataState, setCartDataState] = useState<CartData[]>(cartData)
 
   useEffect(() => {
-    Notification.requestPermission()
-  }, [])
+    Cookies.set('cartData', JSON.stringify(cartDataState))
+  }, [cartDataState])
 
-  useEffect(() => {
-    Cookies.set('level', String(level))
-    Cookies.set('currentExperience', String(currentExperience))
-    Cookies.set('challengesCompleted', String(challengesCompleted))
-  }, [level, currentExperience, challengesCompleted])
+  function removeAllFromCart(): void {
+    setCartDataState([])
+  }
 
-  function startNewChallenge() {
-    const randomChallengeIndex = Math.floor(Math.random() * challenges.length)
-    const challenge = challenges[randomChallengeIndex]
-
-    setActiveChallenge(challenge as Challenge)
-
-    new Audio('/notification.mp3').play()
-
-    if (Notification.permission === 'granted') {
-      new Notification('Novo desafio 🎉', {
-        body: `Valendo ${challenge.amount} de xp!`,
-        silent: false,
+  function removeFromCart(target: CartData): void {
+    setCartDataState(
+      cartDataState.filter((item) => {
+        return item.id != target.id
       })
-    }
+    )
   }
 
-  function levelUp() {
-    setLevel(level + 1)
-    setIsLevelUpModalOpen(true)
-  }
+  function addToCart(item: CartData): void {
+    const newCartData = cartDataState
 
-  function closeLevelUpModal() {
-    setIsLevelUpModalOpen(false)
-  }
-
-  function completeChallenge() {
-    if (!activeChallenge) {
-      return
-    }
-
-    const { amount } = activeChallenge
-
-    let finalExperience = currentExperience + amount
-
-    if (finalExperience >= experienceToNextLevel) {
-      finalExperience = finalExperience - experienceToNextLevel
-      levelUp()
-    }
-
-    setChallengesCompleted(challengesCompleted + 1)
-    setCurrentExperience(finalExperience)
-    setActiveChallenge(null)
-  }
-
-  function resetChallenge() {
-    setActiveChallenge(null)
+    setCartDataState([...newCartData, item])
   }
 
   return (
-    <ChallengesContext.Provider
+    <CartContext.Provider
       value={{
-        level,
-        challengesCompleted,
-        currentExperience,
-        experienceToNextLevel,
-        activeChallenge,
-        completeChallenge,
-        startNewChallenge,
-        resetChallenge,
-        closeLevelUpModal,
+        cartData: cartDataState,
+        removeAllFromCart: removeAllFromCart,
+        removeFromCart: removeFromCart,
+        addToCart: addToCart,
       }}
     >
       {children}
-
-      {isLevelUpModalOpen && <LevelUpModal />}
-    </ChallengesContext.Provider>
+    </CartContext.Provider>
   )
 }

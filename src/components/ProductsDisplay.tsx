@@ -27,7 +27,7 @@ const ProductList: NextPage<ProductListProps> = ({
 
   if (products?.length) {
     for (let i = 0; i < numberOfProducts && i < products.length; i++) {
-      displayedProducts.push(<Product key={i} currentProduct={products[i]} />)
+      displayedProducts.push(<Product key={products[i].id} currentProduct={products[i]} />)
     }
   }
 

@@ -7,24 +7,28 @@ import { ProductData } from '../contexts/ProductsContext'
 import { useParseToDisplayPrice } from '../hooks/useParseToDisplayPrice'
 
 import styles from '../styles/components/product.module.scss'
+import { useCart } from '../hooks/useCart'
 
 interface ProductComponentProps {
   currentProduct: ProductData
 }
 
 const Product: NextPage<ProductComponentProps> = ({ currentProduct }) => {
-  const { name, price, discount, amount, images } = currentProduct
+  const { id, name, price, discount, amount, images } = currentProduct
+  const [priceNumber, discountNumber, amountNumber] = [+price, +discount, +amount]
+
+  const { addToCart } = useCart()
 
   const [currentImageState, setCurrentImageState] = useState(images[0].url)
   const [animationState, setAnimationState] = useState(false)
 
-  const isSoldOut = amount == 0 ? true : false
-  const hasDiscount = discount > 0 ? true : false
+  const isSoldOut = amountNumber == 0 ? true : false
+  const hasDiscount = discountNumber > 0 ? true : false
 
-  const discountInCurrency = price * (discount / 100)
-  const priceWithDiscount = price - discountInCurrency
+  const discountInCurrency = priceNumber * (discountNumber / 100)
+  const priceWithDiscount = priceNumber - discountInCurrency
 
-  const displayPrice = useParseToDisplayPrice(price)
+  const displayPrice = useParseToDisplayPrice(priceNumber)
   const displayPriceWithDiscount = useParseToDisplayPrice(priceWithDiscount)
   const displayDiscountInCurrency = useParseToDisplayPrice(discountInCurrency)
 
@@ -49,15 +53,14 @@ const Product: NextPage<ProductComponentProps> = ({ currentProduct }) => {
         in={animationState}
         timeout={100}
         classNames={{
-          enterActive: styles.productEnteringActive,
-          enterDone: styles.productEntering,
-          exitActive: styles.productExitingActive,
-          exitDone: styles.productExiting,
+          enterActive: styles.productEntering,
+          enterDone: styles.productEntered,
+          exitActive: styles.productExiting,
+          exitDone: styles.productExited,
         }}
         component={null}
       >
         <Image
-          className="animated"
           src={currentImageState}
           width={250}
           height={250}
@@ -76,8 +79,8 @@ const Product: NextPage<ProductComponentProps> = ({ currentProduct }) => {
         }}
         component={null}
       >
-        <a className={styles.cartButton} href="/">
-          Adicionar ao{' '}
+        <button className={styles.cartButton} onClick={() => addToCart({ id: id })}>
+          Adicionar ao
           <Image
             src="/icons/cart-filled.svg"
             alt="cart"
@@ -86,7 +89,7 @@ const Product: NextPage<ProductComponentProps> = ({ currentProduct }) => {
             layout="fixed"
             objectFit="cover"
           />
-        </a>
+        </button>
       </CSSTransition>
       <h1>{name}</h1>
       {hasDiscount ? (

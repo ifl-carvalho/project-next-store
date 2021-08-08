@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { ProductsContext, ProductData } from '../contexts/ProductsContext'
+import { ProductsContext, ProductsContextData } from '../contexts/ProductsContext'
 
 interface UseProductsProps {
   requestedDiscount: number
@@ -9,7 +9,8 @@ interface UseProductsProps {
 export function useProducts({
   requestedDiscount,
   requestedTag,
-}: Partial<UseProductsProps> = {}): ProductData[] {
+}: Partial<UseProductsProps> = {}): ProductsContextData {
+  const setProductsList = useContext(ProductsContext).setProductsList
   let products = useContext(ProductsContext).productList
 
   if (requestedTag) {
@@ -19,12 +20,8 @@ export function useProducts({
   }
 
   if (requestedDiscount && requestedDiscount <= 100) {
-    products = products.filter((product) => product.discount > requestedDiscount)
+    products = products.filter((product) => Number(product.discount) > requestedDiscount)
   }
 
-  return products
-}
-
-export function useSetProducts(products: ProductData[]): void {
-  useContext(ProductsContext).setProductsList(products)
+  return { productList: products, setProductsList: setProductsList }
 }

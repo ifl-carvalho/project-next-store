@@ -18,14 +18,14 @@ export interface TagData {
   name: string
 }
 
-export interface CategoriesProviderProps {
-  children: ReactNode
-  categoriesData: CategoryData[]
-}
-
 export interface CategoriesContextData {
   categoryList: CategoryData[]
   setCategoryList: (categories: CategoryData[]) => void
+}
+
+interface CategoriesProviderProps {
+  children: ReactNode
+  categoriesData: CategoryData[]
 }
 
 export const CategoriesContext = createContext({} as CategoriesContextData)
