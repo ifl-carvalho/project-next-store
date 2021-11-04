@@ -3,12 +3,12 @@ import Image from 'next/image'
 
 import { useState } from 'react'
 import { CSSTransition } from 'react-transition-group'
-import { useScrollEvent } from '../hooks/useScrollEvent'
-import { useResizeEvent } from '../hooks/useResizeEvent'
+import { useScrollEvent } from '../../hooks/useScrollEvent'
+import { useResizeEvent } from '../../hooks/useResizeEvent'
 
-import styles from '../styles/components/navBar.module.scss'
+import styles from './styles.module.scss'
 
-const NavBar: NextPage = () => {
+export const NavBar: NextPage = () => {
   const [navBarPositionFixed, setNavBarPositionFixed] = useState(false)
   const [screenIsNarrow, setScreenIsNarrow] = useState(false)
   const [menuIsMoving, setMenuIsMoving] = useState(false)
@@ -249,5 +249,3 @@ const NavBar: NextPage = () => {
     </div>
   )
 }
-
-export default NavBar

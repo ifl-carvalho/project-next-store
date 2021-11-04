@@ -1,9 +1,9 @@
 import { NextPage } from 'next'
 import Image from 'next/image'
 
-import styles from '../styles/components/loading.module.scss'
+import styles from './styles.module.scss'
 
-const Loading: NextPage = () => {
+export const Loading: NextPage = () => {
   return (
     <div className={styles.loading}>
       <div>
@@ -27,5 +27,3 @@ const Loading: NextPage = () => {
     </div>
   )
 }
-
-export default Loading

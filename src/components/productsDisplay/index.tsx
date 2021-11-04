@@ -1,9 +1,9 @@
 import { NextPage } from 'next'
 
-import Product from './Product'
-import { useProducts } from '../hooks/useProducts'
+import { Product } from '../product'
+import { useProducts } from '../../hooks/useProducts'
 
-import styles from '../styles/components/productList.module.scss'
+import styles from './styles.module.scss'
 
 interface ProductListProps {
   numberOfProducts: number
@@ -14,13 +14,13 @@ interface ProductListProps {
   showSeeMoreButton: boolean
 }
 
-const ProductList: NextPage<ProductListProps> = ({
-  numberOfProducts,
-  displayTag,
-  displayDiscountOver,
-  showHeader,
-  headerText,
-  showSeeMoreButton,
+export const ProductList: NextPage<ProductListProps> = ({
+  numberOfProducts = 4,
+  displayTag = '',
+  displayDiscountOver = 0,
+  showHeader = true,
+  headerText = '',
+  showSeeMoreButton = false,
 }) => {
   const products = useProducts({ requestedDiscount: displayDiscountOver, requestedTag: displayTag })
     .productList
@@ -46,14 +46,3 @@ const ProductList: NextPage<ProductListProps> = ({
     </div>
   )
 }
-
-ProductList.defaultProps = {
-  numberOfProducts: 4,
-  displayTag: '',
-  displayDiscountOver: 0,
-  showHeader: true,
-  headerText: '',
-  showSeeMoreButton: false,
-}
-
-export default ProductList

@@ -1,9 +1,9 @@
 import { NextPage } from 'next'
 import Image from 'next/image'
 
-import styles from '../styles/components/footer.module.scss'
+import styles from './styles.module.scss'
 
-const Footer: NextPage = () => {
+export const Footer: NextPage = () => {
   return (
     <div>
       <a href="/">
@@ -66,5 +66,3 @@ const Footer: NextPage = () => {
     </div>
   )
 }
-
-export default Footer

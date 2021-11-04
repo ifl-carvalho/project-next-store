@@ -1,25 +1,27 @@
 import { NextPage } from 'next'
 import { AppProps } from 'next/app'
 
-import Cookies from 'js-cookie'
-
-import { CartData, CartProvider } from '../contexts/CartContext'
+import { CartProvider } from '../contexts/CartContext'
 import { CategoriesProvider } from '../contexts/CategoriesContext'
 import { ProductsProvider } from '../contexts/ProductsContext'
+import { CookiesModal } from '../components/cookiesModal'
+import { NavBar } from '../components/navBar'
 
 import '../styles/globals.scss'
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
-  const cart = (Cookies.getJSON('cartData') ?? []) as CartData[]
-
   return (
-    <CategoriesProvider categoriesData={[]}>
-      <ProductsProvider productsData={[]}>
-        <CartProvider cartData={cart}>
-          <Component {...pageProps} />
-        </CartProvider>
-      </ProductsProvider>
-    </CategoriesProvider>
+    <>
+      <NavBar />
+      <CategoriesProvider categoriesData={[]}>
+        <ProductsProvider productsData={[]}>
+          <CartProvider>
+            <Component {...pageProps} />
+          </CartProvider>
+        </ProductsProvider>
+      </CategoriesProvider>
+      <CookiesModal />
+    </>
   )
 }
 

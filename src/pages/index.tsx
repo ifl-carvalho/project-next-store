@@ -1,16 +1,15 @@
 import { GetStaticProps, NextPage } from 'next'
-import Head from 'next/head'
 import { useEffect } from 'react'
-import CookiesModal from '../components/CookiesModal'
-import Footer from '../components/Footer'
-import MainDisplay from '../components/MainDisplay'
-import NavBar from '../components/NavBar'
-import ProductsDisplay from '../components/ProductsDisplay'
-import { useCategories } from '../hooks/useCategories'
-import { useProducts } from '../hooks/useProducts'
-import { fetchProducts } from '../services'
+import Head from 'next/head'
+
+import { ProductList } from '../components/productsDisplay'
 import { fetchCategories } from '../services/categories'
+import { useCategories } from '../hooks/useCategories'
+import { MainDisplay } from '../components/carousel'
+import { useProducts } from '../hooks/useProducts'
 import { Category, Product } from '../types/api'
+import { Footer } from '../components/footer'
+import { fetchProducts } from '../services'
 
 interface IndexProps {
   categories: Category[]
@@ -32,9 +31,8 @@ const Index: NextPage<IndexProps> = ({ categories, products }) => {
         <title>Create Next App</title>
       </Head>
       <main>
-        <NavBar />
         <MainDisplay />
-        <ProductsDisplay
+        <ProductList
           numberOfProducts={4}
           displayTag={''}
           displayDiscountOver={0}
@@ -43,7 +41,6 @@ const Index: NextPage<IndexProps> = ({ categories, products }) => {
           showSeeMoreButton={true}
         />
         <Footer />
-        <CookiesModal />
       </main>
     </>
   )

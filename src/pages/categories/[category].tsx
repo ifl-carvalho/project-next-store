@@ -4,7 +4,7 @@ import { useRouter } from 'next/dist/client/router'
 
 import { ProductData } from '../../contexts/ProductsContext'
 import { CategoryData } from '../../contexts/CategoriesContext'
-import Loading from '../../components/Loading'
+import { Loading } from '../../components/loading'
 
 interface CategoryProps {
   id: string

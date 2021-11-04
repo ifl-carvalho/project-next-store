@@ -1,14 +1,16 @@
+import { useState } from 'react'
 import { NextPage } from 'next'
 import Image from 'next/image'
-import { useState } from 'react'
 
-import styles from '../styles/components/cookiesModal.module.scss'
+import { CookiesTermManager } from '../../services'
+
+import styles from './styles.module.scss'
 
 interface CookiesModalViewProps {
   onClick: () => void
 }
 
-export const CookiesModalView: NextPage<CookiesModalViewProps> = ({ onClick }) => {
+const CookiesModalView: NextPage<CookiesModalViewProps> = ({ onClick }) => {
   return (
     <div className={styles.modal}>
       <p className={styles.modalText}>
@@ -35,10 +37,15 @@ export const CookiesModalView: NextPage<CookiesModalViewProps> = ({ onClick }) =
   )
 }
 
-const CookiesModal: NextPage = () => {
-  const [cookiesModalState, setCookiesModalState] = useState(true)
+export const CookiesModal: NextPage = () => {
+  function handleCloseCookies(): void {
+    setCookiesModalState(false)
+    CookiesTermManager.saveAccepted()
+  }
 
-  return cookiesModalState ? <CookiesModalView onClick={() => setCookiesModalState(false)} /> : null
+  const cookieStatus = CookiesTermManager.getAccepted() === 'accepted' ? false : true
+
+  const [cookiesModalState, setCookiesModalState] = useState(cookieStatus)
+
+  return cookiesModalState ? <CookiesModalView onClick={handleCloseCookies} /> : <></>
 }
-
-export default CookiesModal

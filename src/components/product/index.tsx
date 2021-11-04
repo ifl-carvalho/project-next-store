@@ -1,18 +1,19 @@
 import { NextPage } from 'next'
+import { useState } from 'react'
 import Image from 'next/image'
+
 import { CSSTransition } from 'react-transition-group'
 
-import { useState } from 'react'
-import { ProductData } from '../contexts/ProductsContext'
-import { useParseToDisplayPrice } from '../hooks/useParseToDisplayPrice'
+import { useParseToDisplayPrice } from '../../hooks/useParseToDisplayPrice'
+import { Product as ProductData } from '../../types/api'
 
-import styles from '../styles/components/product.module.scss'
+import styles from './styles.module.scss'
 
 interface ProductComponentProps {
   currentProduct: ProductData
 }
 
-const Product: NextPage<ProductComponentProps> = ({ currentProduct }) => {
+export const Product: NextPage<ProductComponentProps> = ({ currentProduct }) => {
   const { name, price, discount, amount, images } = currentProduct
   const [priceNumber, discountNumber, amountNumber] = [+price, +discount, +amount]
 
@@ -105,5 +106,3 @@ const Product: NextPage<ProductComponentProps> = ({ currentProduct }) => {
     </div>
   )
 }
-
-export default Product
