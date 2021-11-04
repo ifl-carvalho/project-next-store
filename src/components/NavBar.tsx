@@ -2,7 +2,7 @@ import { NextPage } from 'next'
 import Image from 'next/image'
 
 import { useState } from 'react'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group'
 import { useScrollEvent } from '../hooks/useScrollEvent'
 import { useResizeEvent } from '../hooks/useResizeEvent'
 

@@ -7,17 +7,14 @@ import { ProductData } from '../contexts/ProductsContext'
 import { useParseToDisplayPrice } from '../hooks/useParseToDisplayPrice'
 
 import styles from '../styles/components/product.module.scss'
-import { useCart } from '../hooks/useCart'
 
 interface ProductComponentProps {
   currentProduct: ProductData
 }
 
 const Product: NextPage<ProductComponentProps> = ({ currentProduct }) => {
-  const { id, name, price, discount, amount, images } = currentProduct
+  const { name, price, discount, amount, images } = currentProduct
   const [priceNumber, discountNumber, amountNumber] = [+price, +discount, +amount]
-
-  const { addToCart } = useCart()
 
   const [currentImageState, setCurrentImageState] = useState(images[0].url)
   const [animationState, setAnimationState] = useState(false)
@@ -79,7 +76,7 @@ const Product: NextPage<ProductComponentProps> = ({ currentProduct }) => {
         }}
         component={null}
       >
-        <button className={styles.cartButton} onClick={() => addToCart({ id: id })}>
+        <button className={styles.cartButton}>
           Adicionar ao
           <Image
             src="/icons/cart-filled.svg"

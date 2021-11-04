@@ -23,6 +23,7 @@ const ProductList: NextPage<ProductListProps> = ({
   showSeeMoreButton,
 }) => {
   const products = useProducts({ requestedDiscount: displayDiscountOver, requestedTag: displayTag })
+    .productList
   const displayedProducts = [] as JSX.Element[]
 
   if (products?.length) {

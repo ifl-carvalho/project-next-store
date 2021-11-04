@@ -33,17 +33,11 @@ export const CartProvider: NextPage<CartProviderProps> = function ({ children, c
   }
 
   function removeFromCart(target: CartData): void {
-    setCartDataState(
-      cartDataState.filter((item) => {
-        return item.id != target.id
-      })
-    )
+    setCartDataState(cartDataState.filter((item) => item.id != target.id))
   }
 
   function addToCart(item: CartData): void {
-    const newCartData = cartDataState
-
-    setCartDataState([...newCartData, item])
+    setCartDataState([...cartDataState, item])
   }
 
   return (

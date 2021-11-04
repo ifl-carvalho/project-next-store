@@ -1,31 +1,15 @@
 import { NextPage } from 'next'
 import { useState, createContext, ReactNode } from 'react'
-
-export interface CategoryData {
-  id: number
-  name: string
-  images: Array<ImageData>
-  tags: Array<TagData>
-}
-
-export interface ImageData {
-  id: number
-  url: string
-}
-
-export interface TagData {
-  id: string
-  name: string
-}
+import { Category } from '../types/api'
 
 export interface CategoriesContextData {
-  categoryList: CategoryData[]
-  setCategoryList: (categories: CategoryData[]) => void
+  categoryList: Category[]
+  setCategoryList: (categories: Category[]) => void
 }
 
 interface CategoriesProviderProps {
   children: ReactNode
-  categoriesData: CategoryData[]
+  categoriesData: Category[]
 }
 
 export const CategoriesContext = createContext({} as CategoriesContextData)
@@ -34,7 +18,7 @@ export const CategoriesProvider: NextPage<CategoriesProviderProps> = function ({
   children,
   categoriesData,
 }) {
-  const setCategoryList = (categoriesData: CategoryData[]): void => {
+  const setCategoryList = (categoriesData: Category[]): void => {
     setCategoryListState({ ...categoryListState, categoryList: categoriesData })
   }
 
