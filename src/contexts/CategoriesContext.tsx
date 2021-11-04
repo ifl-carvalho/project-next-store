@@ -9,14 +9,14 @@ export interface CategoriesContextData {
 
 interface CategoriesProviderProps {
   children: ReactNode
-  categoriesData: Category[]
+  categoriesData?: Category[]
 }
 
 export const CategoriesContext = createContext({} as CategoriesContextData)
 
 export const CategoriesProvider: NextPage<CategoriesProviderProps> = function ({
   children,
-  categoriesData,
+  categoriesData = [],
 }) {
   const setCategoryList = (categoriesData: Category[]): void => {
     setCategoryListState({ ...categoryListState, categoryList: categoriesData })

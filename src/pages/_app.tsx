@@ -13,8 +13,8 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
       <NavBar />
-      <CategoriesProvider categoriesData={[]}>
-        <ProductsProvider productsData={[]}>
+      <CategoriesProvider>
+        <ProductsProvider>
           <CartProvider>
             <Component {...pageProps} />
           </CartProvider>

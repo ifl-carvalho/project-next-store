@@ -9,14 +9,14 @@ export interface ProductsContextData {
 
 interface ProductsProviderProps {
   children: ReactNode
-  productsData: Product[]
+  productsData?: Product[]
 }
 
 export const ProductsContext = createContext({} as ProductsContextData)
 
 export const ProductsProvider: NextPage<ProductsProviderProps> = function ({
   children,
-  productsData,
+  productsData = [],
 }) {
   const setProductsList = (productsData: Product[]): void => {
     setProductListState({ ...productListState, productList: productsData })
