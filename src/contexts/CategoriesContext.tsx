@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import { useState, createContext, ReactNode } from 'react'
-import { Category } from '../types/api'
+import { Category } from '../types/mainApi'
 
 export interface CategoriesContextData {
   categoryList: Category[]

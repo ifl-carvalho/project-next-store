@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import { useState, createContext, ReactNode } from 'react'
-import { Product } from '../types/api'
+import { Product } from '../types/mainApi'
 
 export interface ProductsContextData {
   productList: Product[]

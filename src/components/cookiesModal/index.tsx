@@ -40,10 +40,10 @@ const CookiesModalView: NextPage<CookiesModalViewProps> = ({ onClick }) => {
 export const CookiesModal: NextPage = () => {
   function handleCloseCookies(): void {
     setCookiesModalState(false)
-    CookiesTermManager.saveAccepted()
+    CookiesTermManager.saveAsAccepted()
   }
 
-  const cookieStatus = CookiesTermManager.getAccepted() === 'accepted' ? false : true
+  const cookieStatus = CookiesTermManager.getIfAccepted() === 'accepted' ? false : true
 
   const [cookiesModalState, setCookiesModalState] = useState(cookieStatus)
 

@@ -1,7 +1,19 @@
 import { NextPage } from 'next'
+import Head from 'next/head'
 
-const Policies: NextPage = () => {
-  return <Policies />
+import { Policies } from '../templates/policies'
+
+const PoliciesPage: NextPage = () => {
+  return (
+    <>
+      <Head>
+        <title>Create Next App</title>
+      </Head>
+      <main>
+        <Policies />
+      </main>
+    </>
+  )
 }
 
-export default Policies
+export default PoliciesPage

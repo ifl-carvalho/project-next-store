@@ -2,21 +2,18 @@ import { GetStaticProps, NextPage } from 'next'
 import { useEffect } from 'react'
 import Head from 'next/head'
 
-import { ProductList } from '../components/productsDisplay'
-import { fetchCategories } from '../services/categories'
+import { fetchProducts, fetchCategories } from '../services/http/mainApi'
 import { useCategories } from '../hooks/useCategories'
-import { MainDisplay } from '../components/carousel'
 import { useProducts } from '../hooks/useProducts'
-import { Category, Product } from '../types/api'
-import { Footer } from '../components/footer'
-import { fetchProducts } from '../services'
+import { Category, Product } from '../types/mainApi'
+import { Index } from '../templates/index'
 
-interface IndexProps {
+interface IndexPageProps {
   categories: Category[]
   products: Product[]
 }
 
-const Index: NextPage<IndexProps> = ({ categories, products }) => {
+const IndexPage: NextPage<IndexPageProps> = ({ categories, products }) => {
   const { setCategoryList } = useCategories()
   const { setProductsList } = useProducts()
 
@@ -31,22 +28,13 @@ const Index: NextPage<IndexProps> = ({ categories, products }) => {
         <title>Create Next App</title>
       </Head>
       <main>
-        <MainDisplay />
-        <ProductList
-          numberOfProducts={4}
-          displayTag={''}
-          displayDiscountOver={0}
-          showHeader={true}
-          headerText={'Mais Vendidos'}
-          showSeeMoreButton={true}
-        />
-        <Footer />
+        <Index />
       </main>
     </>
   )
 }
 
-export default Index
+export default IndexPage
 
 export const getStaticProps: GetStaticProps = async () => {
   const categoriesData = await fetchCategories()

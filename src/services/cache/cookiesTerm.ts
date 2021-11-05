@@ -1,16 +1,16 @@
 import { set, get } from 'js-cookie'
 
 interface ICookiesTerm {
-  saveAccepted: () => void
-  getAccepted: () => void
+  saveAsAccepted: () => void
+  getIfAccepted: () => void
 }
 
 class CookiesTerm implements ICookiesTerm {
-  saveAccepted(): void {
+  saveAsAccepted(): void {
     set('@CookieTerms:', 'accepted', { expires: 365 })
   }
 
-  getAccepted(): string | undefined {
+  getIfAccepted(): string | undefined {
     return get('@CookieTerms:')
   }
 }
