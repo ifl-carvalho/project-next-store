@@ -22,8 +22,10 @@ export const ProductList: NextPage<ProductListProps> = ({
   headerText = '',
   showSeeMoreButton = false,
 }) => {
-  const products = useProducts({ requestedDiscount: displayDiscountOver, requestedTag: displayTag })
-    .productList
+  const products = useProducts({
+    requestedDiscount: displayDiscountOver,
+    requestedTag: displayTag,
+  }).productList
   const displayedProducts = [] as JSX.Element[]
 
   if (products?.length) {
