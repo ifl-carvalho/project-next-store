@@ -1,15 +1,13 @@
+@import '../styles/variables.scss';
+
 html,
 body {
-  font-family: -apple-system, "Recursive", BlinkMacSystemFont, Roboto, Arial, "Noto Sans", sans-serif;
-}
-
-html {
-  font-size: 62.5%;
+  font-family: var(--default-fonts);
 }
 
 body {
   font-size: 1.6rem;
-  background-color: --color-body;
+  background-color: var(--color-background);
 }
 
 * {
@@ -27,11 +25,8 @@ select {
 
 button {
   border: none;
-  background-color: transparent;
-}
-
-button:hover {
   cursor: pointer;
+  background-color: transparent;
 }
 
 button:focus:not(:focus-visible) {
@@ -43,8 +38,22 @@ a {
   text-decoration: none;
 }
 
-
 ul {
   list-style-type: none;
 }
 
+html {
+  font-size: 62.5%; // 10px
+}
+
+@media (max-width: 1080px) {
+  html {
+    font-size: 56.25%; // 9px
+  }
+}
+
+@media (max-width: 720px) {
+  html {
+    font-size: 50%; // 8px
+  }
+}
