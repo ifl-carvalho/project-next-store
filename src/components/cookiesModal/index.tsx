@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { NextPage } from 'next'
 import Image from 'next/image'
 
-import { CookiesTermManager } from '../../services'
+import { CookiesTermManager } from '../../services/cache/cookiesTerm'
 
 import styles from './styles.module.scss'
 

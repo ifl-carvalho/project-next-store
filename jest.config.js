@@ -1,14 +1,26 @@
 module.exports = {
-    roots: ['<rootDir>'],
+    roots: ['<rootDir>/__tests__'],
     moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'jsx'],
-    testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|.next)[/\\\\]'],
-    transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$'],
+    coverageDirectory: '__coverage__',
+    collectCoverageFrom: [
+      'src/**/*.{js,jsx,ts,tsx}',
+      '!**/*.d.ts',
+      '!**/node_modules/**',
+    ],
+    testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|.next)[/\\\\]', '__setup__'],
     transform: {
-      '^.+\\.(ts|tsx)$': 'babel-jest',
+      '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
     },
-    watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-typeahead/testname'],
     moduleNameMapper: {
       '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
-      '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/test/__mocks__/fileMock.js',
+      '^.+\\.(css|sass|scss)$': '<rootDir>/__tests__/__setup__/__mocks__/styleMock.js',
+      '^.+\\.(jpg|jpeg|png|gif|webp|avif|svg)$': '<rootDir>/__tests__/__setup__/__mocks__/fileMock.js',
     },
+    testEnvironment: 'jsdom',
+    watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-typeahead/testname'],
+    setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+    moduleDirectories: [
+      'node_modules',
+      '<rootDir>/__tests__/__setup__/__utils__'
+    ],
   }

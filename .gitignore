@@ -29,3 +29,7 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# jest
+/coverage
+/__coverage__

@@ -1,4 +1,4 @@
-import { ProductsResponse } from '../../types/mainApi'
+import { ProductsResponse } from '../../interfaces/mainApi'
 
 export async function fetchProducts(): Promise<ProductsResponse> {
   const productsResponse = await fetch(`${process.env.MAIN_API}/products`)

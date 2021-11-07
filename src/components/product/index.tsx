@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { CSSTransition } from 'react-transition-group'
 
 import { useParseToDisplayPrice } from '../../hooks/useParseToDisplayPrice'
-import { Product as ProductData } from '../../types/mainApi'
+import { Product as ProductData } from '../../interfaces/mainApi'
 
 import styles from './styles.module.scss'
 

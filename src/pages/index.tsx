@@ -5,7 +5,7 @@ import Head from 'next/head'
 import { fetchProducts, fetchCategories } from '../services/http/mainApi'
 import { useCategories } from '../hooks/useCategories'
 import { useProducts } from '../hooks/useProducts'
-import { Category, Product } from '../types/mainApi'
+import { Category, Product } from '../interfaces/mainApi'
 import { Index } from '../templates/index'
 
 interface IndexPageProps {
