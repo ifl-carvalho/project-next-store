@@ -6,7 +6,6 @@ import IndexPage from '../../src/pages/index'
 describe('Home', () => {
   it('renders a heading', () => {
     const { container } = render(<IndexPage categories={[]} products={[]} />)
-
-    expect(container).toBeInTheDocument()
+    expect(container.firstChild).toBeInTheDocument()
   })
 })
