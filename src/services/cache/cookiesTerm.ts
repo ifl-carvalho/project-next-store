@@ -2,7 +2,7 @@ import { set, get } from 'js-cookie'
 
 interface ICookiesTerm {
   saveAsAccepted: () => void
-  getIfAccepted: () => void
+  getIfAccepted: () => string | undefined
 }
 
 class CookiesTerm implements ICookiesTerm {

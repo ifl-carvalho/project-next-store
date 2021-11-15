@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  position: relative;
+  width: 80%;
+
+  border: none;
+  border-bottom: 2px solid #000;
+
+  > input {
+    border: none;
+    width: 100%;
+    padding: 10px;
+
+    background-color: transparent;
+  }
+
+  > button {
+    position: absolute;
+    right: 0;
+    padding: 5px;
+  }
+}

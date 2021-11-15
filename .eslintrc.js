@@ -5,7 +5,14 @@ module.exports = {
     es6: true,
   },
   parserOptions: { ecmaVersion: 8 },
-  ignorePatterns: ['node_modules/*', '.next/*', '.out/*', '!.prettierrc.js', 'jest.setup.js', 'jest.config.js'],
+  ignorePatterns: [
+    'node_modules/*',
+    '.next/*',
+    '.out/*',
+    '!.prettierrc.js',
+    'jest.setup.js',
+    'jest.config.js',
+  ],
   extends: ['eslint:recommended'],
   overrides: [
     {
@@ -38,9 +45,8 @@ module.exports = {
           },
         ],
         'prettier/prettier': ['error', {}, { usePrettierrc: true }],
+        'no-console': 1,
       },
     },
   ],
 }
-
-
