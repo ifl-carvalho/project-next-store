@@ -19,8 +19,11 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "test-utils": ["./__tests__/__setup__/__utils__/test-utils"]
-    }
+      "test-utils": [
+        "./__tests__/__setup__/__utils__/test-utils"
+      ]
+    },
+    "incremental": true
   },
   "include": [
     "next-env.d.ts",
@@ -29,5 +32,5 @@
   ],
   "exclude": [
     "node_modules"
-  ],
+  ]
 }

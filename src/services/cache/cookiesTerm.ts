@@ -1,4 +1,4 @@
-import { set, get } from 'js-cookie'
+import cookies from 'js-cookie'
 
 interface ICookiesTerm {
   saveAsAccepted: () => void
@@ -7,11 +7,11 @@ interface ICookiesTerm {
 
 class CookiesTerm implements ICookiesTerm {
   saveAsAccepted(): void {
-    set('@CookieTerms:', 'accepted', { expires: 365 })
+    cookies.set('@CookieTerms:', 'accepted', { expires: 365 })
   }
 
   getIfAccepted(): string | undefined {
-    return get('@CookieTerms:')
+    return cookies.get('@CookieTerms:')
   }
 }
 

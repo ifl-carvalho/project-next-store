@@ -21,7 +21,7 @@ interface CartProviderProps {
 export const CartContext = createContext({} as CartContextData)
 
 export const CartProvider: NextPage<CartProviderProps> = function ({ children }) {
-  const cartData = (Cookies.getJSON('cartData') ?? []) as CartData[]
+  const cartData = (Cookies.get('cartData') ?? []) as CartData[]
   const [cartDataState, setCartDataState] = useState<CartData[]>(cartData)
 
   useEffect(() => {

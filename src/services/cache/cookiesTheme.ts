@@ -1,4 +1,4 @@
-import { set, get, defaults } from 'js-cookie'
+import cookies from 'js-cookie'
 
 interface ICookiesTheme {
   saveCurrentTheme: (theme: string) => void
@@ -7,11 +7,11 @@ interface ICookiesTheme {
 
 class CookiesTheme implements ICookiesTheme {
   saveCurrentTheme(theme: string): void {
-    set('@CookieTheme:', theme, { expires: 365 })
+    cookies.set('@CookieTheme:', theme, { expires: 365 })
   }
 
   getCurrentTheme(): 'light' | 'dark' | undefined {
-    return get('@CookieTheme:') as 'light' | 'dark' | undefined
+    return cookies.get('@CookieTheme:') as 'light' | 'dark' | undefined
   }
 }
 
